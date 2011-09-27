@@ -60,7 +60,7 @@ public class DaoClientTest {
 
 	@Test
 	public void daoClientDeleteClient() throws Exception {
-		assertEquals(" egale ", 1, iDaoClient.deleteClient((long) 1));
+		assertEquals( 1, iDaoClient.deleteClient((long) 1));
 	}
 
 }
