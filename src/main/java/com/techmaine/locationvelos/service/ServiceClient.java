@@ -1,6 +1,5 @@
 package com.techmaine.locationvelos.service;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.techmaine.locationvelos.DAO.interfaceDao.IDaoClient;
