@@ -23,6 +23,9 @@ public class DaoVelos implements IDaoVelos {
 		this.conn = conn;
 	}
 
+	/**
+	 * methode permet d'ajouter des velos
+	 */
 	public int ajoutVelos(Velos velos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(ajouteVelos);
 		pstmt.setLong(1, velos.getIdVelos());
@@ -33,6 +36,9 @@ public class DaoVelos implements IDaoVelos {
 		return intReturnByPstmt;
 	}
 
+	/**
+	 * methode permit de modifier des velos
+	 */
 	public int updateVelos(Velos velos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(updateVelos);
 		pstmt.setString(1, velos.getNom());
@@ -42,6 +48,9 @@ public class DaoVelos implements IDaoVelos {
 		return intReturnByPstmt;
 	}
 
+	/**
+	 * methode permit de supprime des velo
+	 */
 	public int deleteVelos(Long idVelos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(deleteVelos);
 		pstmt.setLong(1, idVelos);
@@ -50,7 +59,7 @@ public class DaoVelos implements IDaoVelos {
 	}
 
 	/**
-	 * 
+	 * mehode permit de recupere une velos a partir de son id
 	 */
 	public Velos findVelosById(Long idVelos) throws SQLException {
 		Velos velos = new Velos();
@@ -66,6 +75,9 @@ public class DaoVelos implements IDaoVelos {
 		return velos;
 	}
 
+	/**
+	 * methode permit de recupere la liste des velos enregistre dans la BDD
+	 */
 	public List<Velos> findAllVelos() throws SQLException {
 		List<Velos> velosList = new ArrayList<Velos>();
 		PreparedStatement pstmt = conn.prepareStatement(findAllVelos);

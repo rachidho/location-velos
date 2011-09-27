@@ -23,6 +23,9 @@ public class DaoClient implements IDaoClient {
 		this.conn = conn;
 	}
 
+	/**
+	 * methode qui enregistre les client
+	 */
 	public int ajoutClient(Client client) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(createClient);
 		pstmt.setLong(1, client.getIdClient());
@@ -33,6 +36,9 @@ public class DaoClient implements IDaoClient {
 		return i;
 	}
 
+	/**
+	 * methode qui modifier les client
+	 */
 	public int updateClient(Client client) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(updateClient);
 		pstmt.setString(1, client.getNomClient());
@@ -43,6 +49,9 @@ public class DaoClient implements IDaoClient {
 		return i;
 	}
 
+	/**
+	 * methode qui supprime les clients
+	 */
 	public int deleteClient(Long idClient) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(deleteClient);
 		pstmt.setLong(1, idClient);
@@ -51,6 +60,9 @@ public class DaoClient implements IDaoClient {
 		return i;
 	}
 
+	/**
+	 * methode qui fait le recherche d'un client a partir de son id 
+	 */
 	public Client findClientById(Long idClient) throws SQLException {
 		Client findClient = null;
 		PreparedStatement pstmt = conn.prepareStatement(findClientById);
@@ -61,6 +73,9 @@ public class DaoClient implements IDaoClient {
 		return findClient;
 	}
 
+	/**
+	 * 	 methode permit de recupere la list des clients enregistre dans la BDD
+	 */ 
 	public List<Client> findAllClient() throws SQLException {
 		List<Client> clientList = new ArrayList<Client>();
 		PreparedStatement pstmt = conn.prepareStatement(findAllClient);
@@ -70,7 +85,12 @@ public class DaoClient implements IDaoClient {
 		return clientList;
 	}
 
-	// methode permet de passe les donne de resultSet vers objet Client
+	/**
+	 *  methode permet de passe les donne de resultSet vers objet Client
+	 * @param rs
+	 * @return un objet client
+	 * @throws SQLException
+	 */
 	private Client getClientByIdResultSet(ResultSet rs) throws SQLException {
 		Client findClient = new Client();
 		while (rs.next()) {
@@ -80,7 +100,13 @@ public class DaoClient implements IDaoClient {
 		}
 		return findClient;
 	}
-	// methode permet de passe les donne de resultSet vers list<Client>
+	
+	/**
+	 *  methode permet de passe les donne de resultSet vers list<Client>
+	 * @param rs
+	 * @return liste des client
+	 * @throws SQLException
+	 */
 	private List<Client> resultSetToListClient(ResultSet rs)
 			throws SQLException {
 		List<Client> clientList = new ArrayList<Client>();
