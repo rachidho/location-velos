@@ -76,6 +76,7 @@ public class DaoClient implements IDaoClient {
 		pstmt.setLong(1, idFindClient);
 		ResultSet rs = pstmt.executeQuery();
 		findClient = getClientByIdResultSet(rs);
+		rs.close();
 		pstmt.close();
 		return findClient;
 	}
@@ -88,6 +89,7 @@ public class DaoClient implements IDaoClient {
 		PreparedStatement pstmt = conn.prepareStatement(findAllClient);
 		ResultSet rs = pstmt.executeQuery();
 		clientList = resultSetToListClient(rs);
+		rs.close();
 		pstmt.close();
 		return clientList;
 	}

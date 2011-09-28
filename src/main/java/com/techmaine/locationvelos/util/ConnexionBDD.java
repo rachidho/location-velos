@@ -9,8 +9,11 @@ import org.hsqldb.jdbc.JDBCDataSource;
 
 public class ConnexionBDD {
 
-	static JDBCDataSource dataSource;
+	private static JDBCDataSource dataSource;
 	
+	public ConnexionBDD() {
+	}
+
 	/**
 	 *  methode contient le parametre de la base de donne
 	 * @return DataSource

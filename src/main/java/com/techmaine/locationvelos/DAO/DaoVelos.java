@@ -12,7 +12,7 @@ import com.techmaine.locationvelos.entity.Velos;
 
 public class DaoVelos implements IDaoVelos {
 
-	Connection conn = null;
+	private Connection conn = null;
 	private String ajouteVelos = "insert into velos (idVelos, nom, nbrRout, idClient) values (?, ?, ?, ?)";
 	private String updateVelos = "update velos set nom = ?, nbrRout = ? where idVelos = ?";
 	private String deleteVelos = "delete from velos where idVelos = ?";
