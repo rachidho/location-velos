@@ -32,7 +32,6 @@ public class ConnexionBDDTest {
 	public void initaileObjet(){
 		assertNotNull(connexionBDD);
 		assertNotNull(connexion);
-		assertNotNull(ConnexionBDD.getApplicationDataSource());
 	}
 	
 }

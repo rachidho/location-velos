@@ -15,7 +15,7 @@ public class ConnexionBDD {
 	 *  methode contient le parametre de la base de donne
 	 * @return DataSource
 	 */
-	public static DataSource getApplicationDataSource(){
+	private static DataSource getApplicationDataSource(){
 		if(dataSource == null){
 			dataSource = new JDBCDataSource();
 			dataSource.setUrl("jdbc:hsqldb:file:D:\\outils_de_travail\\springsource\\workspace-sts\\location-velos\\data\\data");

@@ -9,6 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.atMost;
+import static org.mockito.Mockito.atLeast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -90,7 +92,7 @@ public class ServiceVelosTest {
 	 * @throws SQLException 
 	 */
 	@Test
-	public void serviceChercheUneVelosDansLaBaseDeDonneeConnaissanSonIdLaValeurRetourniEt1() throws SQLException{
+	public void serviceChercheUneVelosDansLaBaseDeDonneeConnaissanSonIdLaValeurRetourniEt1() throws Exception{
 		Velos velos1 = new Velos();
 		velos1.setIdVelos((long) 1);
 		velos1.setNom("nom");
@@ -100,7 +102,12 @@ public class ServiceVelosTest {
 		when(iDaoVelos.findVelosById(idVelos)).thenReturn(velos1);
 		assertNotNull(iServiceVelos.findVelosById(idVelos));
 		assertEquals(velos1, iServiceVelos.findVelosById(idVelos));
-		verify(iDaoVelos, times(2)).findVelosById(idVelos);
+		
+		// plus 1
+		verify(iDaoVelos, atLeast(1)).findVelosById(idVelos);
+		// moins 
+		verify(iDaoVelos, atMost(2)).findVelosById(idVelos);
+		
 	}
 	
 	/**
@@ -110,7 +117,7 @@ public class ServiceVelosTest {
 	 * @throws SQLException 
 	 */
 	@Test
-	public void serviceRecupereLaListTousLesVelosEnregistreDansLaBaseDeDonneeLeResultaEtUneListDeVelos() throws SQLException{
+	public void serviceRecupereLaListTousLesVelosEnregistreDansLaBaseDeDonneeLeResultaEtUneListDeVelos() throws Exception{
 		List<Velos> listVelos = new ArrayList<Velos>();
 		Velos velos1 = new Velos();
 		velos1.setIdVelos((long) 1);
