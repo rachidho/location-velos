@@ -30,11 +30,11 @@ public class DaoClient implements IDaoClient {
 	/**
 	 * methode qui enregistre les client
 	 */
-	public int ajoutClient(Client client) throws SQLException {
+	public int ajoutClient(Client newClient) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(createClient);
-		pstmt.setLong(1, client.getIdClient());
-		pstmt.setString(2, client.getNomClient());
-		pstmt.setString(3, client.getPreClient());
+		pstmt.setLong(1, newClient.getIdClient());
+		pstmt.setString(2, newClient.getNomClient());
+		pstmt.setString(3, newClient.getPreClient());
 		int i = pstmt.executeUpdate();
 		pstmt.close();
 		return i;
@@ -43,11 +43,11 @@ public class DaoClient implements IDaoClient {
 	/**
 	 * methode qui modifier les client
 	 */
-	public int updateClient(Client client) throws SQLException {
+	public int updateClient(Client oldClient) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(updateClient);
-		pstmt.setString(1, client.getNomClient());
-		pstmt.setString(2, client.getPreClient());
-		pstmt.setLong(3, client.getIdClient());
+		pstmt.setString(1, oldClient.getNomClient());
+		pstmt.setString(2, oldClient.getPreClient());
+		pstmt.setLong(3, oldClient.getIdClient());
 		int i = pstmt.executeUpdate();
 		pstmt.close();
 		return i;
@@ -56,9 +56,9 @@ public class DaoClient implements IDaoClient {
 	/**
 	 * methode qui supprime les clients
 	 */
-	public int deleteClient(Long idClient) throws SQLException {
+	public int deleteClient(Long idDeleteClient) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(deleteClient);
-		pstmt.setLong(1, idClient);
+		pstmt.setLong(1, idDeleteClient);
 		int i = pstmt.executeUpdate();
 		pstmt.close();
 		return i;
@@ -67,10 +67,10 @@ public class DaoClient implements IDaoClient {
 	/**
 	 * methode qui fait le recherche d'un client a partir de son id 
 	 */
-	public Client findClientById(Long idClient) throws SQLException {
+	public Client findClientById(Long idFindClient) throws SQLException {
 		Client findClient = null;
 		PreparedStatement pstmt = conn.prepareStatement(findClientById);
-		pstmt.setLong(1, idClient);
+		pstmt.setLong(1, idFindClient);
 		ResultSet rs = pstmt.executeQuery();
 		findClient = getClientByIdResultSet(rs);
 		pstmt.close();

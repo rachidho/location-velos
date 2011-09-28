@@ -30,12 +30,12 @@ public class DaoVelos implements IDaoVelos {
 	/**
 	 * methode permet d'ajouter des velos
 	 */
-	public int ajoutVelos(Velos velos) throws SQLException {
+	public int ajoutVelos(Velos newVelos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(ajouteVelos);
-		pstmt.setLong(1, velos.getIdVelos());
-		pstmt.setString(2, velos.getNom());
-		pstmt.setInt(3, velos.getNbrRout());
-		pstmt.setLong(4, velos.getIdClient());
+		pstmt.setLong(1, newVelos.getIdVelos());
+		pstmt.setString(2, newVelos.getNom());
+		pstmt.setInt(3, newVelos.getNbrRout());
+		pstmt.setLong(4, newVelos.getIdClient());
 		int intReturnByPstmt = pstmt.executeUpdate();
 		return intReturnByPstmt;
 	}
@@ -43,11 +43,11 @@ public class DaoVelos implements IDaoVelos {
 	/**
 	 * methode permit de modifier des velos
 	 */
-	public int updateVelos(Velos velos) throws SQLException {
+	public int updateVelos(Velos oldVelos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(updateVelos);
-		pstmt.setString(1, velos.getNom());
-		pstmt.setInt(2, velos.getNbrRout());
-		pstmt.setLong(3, velos.getIdVelos());
+		pstmt.setString(1, oldVelos.getNom());
+		pstmt.setInt(2, oldVelos.getNbrRout());
+		pstmt.setLong(3, oldVelos.getIdVelos());
 		int intReturnByPstmt = pstmt.executeUpdate();
 		return intReturnByPstmt;
 	}
@@ -55,9 +55,9 @@ public class DaoVelos implements IDaoVelos {
 	/**
 	 * methode permit de supprime des velo
 	 */
-	public int deleteVelos(Long idVelos) throws SQLException {
+	public int deleteVelos(Long idDeleteVelos) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(deleteVelos);
-		pstmt.setLong(1, idVelos);
+		pstmt.setLong(1, idDeleteVelos);
 		int intReturnByPstmt = pstmt.executeUpdate();
 		return intReturnByPstmt;
 	}
@@ -65,10 +65,10 @@ public class DaoVelos implements IDaoVelos {
 	/**
 	 * mehode permit de recupere une velos a partir de son id
 	 */
-	public Velos findVelosById(Long idVelos) throws SQLException {
+	public Velos findVelosById(Long idFindVelos) throws SQLException {
 		Velos velos = new Velos();
 		PreparedStatement pstmt = conn.prepareStatement(findVelosById);
-		pstmt.setLong(1, idVelos);
+		pstmt.setLong(1, idFindVelos);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()){
 			velos.setIdVelos(rs.getLong(1));

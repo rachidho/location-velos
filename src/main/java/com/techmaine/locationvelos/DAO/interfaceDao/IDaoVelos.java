@@ -10,22 +10,22 @@ public interface IDaoVelos {
 	/**
 	 * methode permet d'ajouter des velos
 	 */
-	public int ajoutVelos(Velos velos) throws SQLException;
+	public int ajoutVelos(Velos newVelos) throws SQLException;
 
 	/**
 	 * methode permit de modifier des velos
 	 */
-	public int updateVelos(Velos velos) throws SQLException;
+	public int updateVelos(Velos oldVelos) throws SQLException;
 
 	/**
 	 * methode permit de supprime des velo
 	 */
-	public int deleteVelos(Long idVelos) throws SQLException;
+	public int deleteVelos(Long idDeleteVelos) throws SQLException;
 
 	/**
 	 * mehode permit de recupere une velos a partir de son id
 	 */
-	public Velos findVelosById(Long idVelos) throws SQLException;
+	public Velos findVelosById(Long idFindVelos) throws SQLException;
 
 	/**
 	 * methode permit de recupere la liste des velos enregistre dans la BDD
