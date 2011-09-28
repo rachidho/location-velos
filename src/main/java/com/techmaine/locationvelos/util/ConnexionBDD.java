@@ -11,13 +11,11 @@ public class ConnexionBDD {
 
 	static JDBCDataSource dataSource;
 	
-	// methode contient le parametre de la base de donne
+	/**
+	 *  methode contient le parametre de la base de donne
+	 * @return DataSource
+	 */
 	private static DataSource getApplicationDataSource(){
-		try {
-			Class.forName("org.hsqldb.jdbcDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}  
 		if(dataSource == null){
 			dataSource = new JDBCDataSource();
 			dataSource.setUrl("jdbc:hsqldb:file:D:\\outils_de_travail\\springsource\\workspace-sts\\location-velos\\data\\data");
@@ -26,7 +24,12 @@ public class ConnexionBDD {
 		}
 		return dataSource;
 	}
-	// methode cree la connexion a la base
+	
+	/**
+	 *  methode cree la connexion a la base
+	 * @return Connection
+	 * @throws SQLException
+	 */
 	public static Connection getConnectionTOBACKOFFICE() throws SQLException {
 		DataSource ds = getApplicationDataSource();		
 		return ds.getConnection();

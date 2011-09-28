@@ -6,11 +6,15 @@ public class Client {
 	private String nomClient;
 	private String preClient;
 	
-	// constructeur vide
+	/**
+	 *  constructeur vide
+	 */
 	public Client() {
 	}
 	
-	// les getters et les setters
+	/**
+	 *  les getters et les setters
+	 */
 	public Long getIdClient() {
 		return idClient;
 	}

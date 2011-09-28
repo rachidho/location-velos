@@ -18,11 +18,11 @@ public class Velos {
 	 * constructeur vide
 	 */
 	public Velos() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	// les getters et les setters
-	
+	/**
+	 *  les getters et les setters
+	 */
 	public Long getIdVelos() {
 		return idVelos;
 	}

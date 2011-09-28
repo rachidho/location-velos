@@ -39,11 +39,18 @@ public class ServiceVelos implements IServiceVelos {
 	public int deleteVelos(Long idVelos) throws SQLException {
 		return iDaoVelos.deleteVelos(idVelos);
 	}
+	
+	/**
+	 * methode permit de recupere une Velos a partir de son id
+	 */
 
 	public Velos findVelosById(Long idVelos) throws SQLException {
 		return iDaoVelos.findVelosById(idVelos);
 	}
 
+	/**
+	 * methode permit de recupere la liste de tous les velos enregistre dans BDD
+	 */
 	public List<Velos> findAllVelos() throws SQLException {
 		return iDaoVelos.findAllVelos();
 	}

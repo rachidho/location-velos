@@ -1,5 +1,6 @@
 package com.techmaine.locationvelos.entityTest;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,12 +26,15 @@ public class ClientTest {
 	 */
 	@Test
 	public void modificationDesProprieteDeLObjetClient() throws Exception{
+		
+		assertNotNull(client);
 		client.setIdClient((long) 1);
 		client.setNomClient("nomClient");
 		client.setPreClient("preClient");
+		
 		assertNotNull(client.getIdClient());
-		assertNotNull(client.getNomClient());
-		assertNotNull(client.getPreClient());
+		assertEquals("nomClient",client.getNomClient());
+		assertEquals("preClient",client.getPreClient());
 	}
 
 }
