@@ -100,13 +100,4 @@ public class ServiceClientTest {
 		when(iDaoClient.findAllClient()).thenReturn(listClient);
 		assertEquals(listClient.size(), iServiceClient.findAllClient().size());
 	}
-	
-	
-	/**
-	 * when(iDaoClient.updateClient(new Client())).thenReturn(1);
-		when(iDaoClient.deleteClient(idClientDelete)).thenReturn(1);
-		when(iDaoClient.findClientById(idClient)).thenReturn(new Client());
-		when(iDaoClient.findAllClient()).thenReturn(new ArrayList<Client>());
-	 */
-	
 }
