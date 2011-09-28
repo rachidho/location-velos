@@ -3,6 +3,9 @@ package com.techmaine.locationvelos.DAOTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doThrow;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -43,7 +46,14 @@ public class DaoClientTest {
 		client.setIdClient((long) 1);
 		client.setNomClient("nomClient");
 		client.setPreClient("preClient");
-		assertEquals(1, iDaoClient.ajoutClient(client));
+		doThrow(new SQLException()).when(iDaoClient).ajoutClient(client);
+		try{
+			assertEquals(1, iDaoClient.ajoutClient(client));
+			fail();
+		}catch(SQLException e){
+			assertTrue(" leve exception ", true);
+		}
+		
 	}
 
 	/**

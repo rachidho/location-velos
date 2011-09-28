@@ -19,6 +19,10 @@ public class DaoClient implements IDaoClient {
 	private String findAllClient = "select * from client";
 	private String findClientById = findAllClient + " where idClient = ?";
 
+	/**
+	 * construction initialise
+	 * @param conn
+	 */
 	public DaoClient(Connection conn) {
 		this.conn = conn;
 	}

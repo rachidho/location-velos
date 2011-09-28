@@ -80,7 +80,7 @@ public class ServiceVelosTest {
 	 */
 	@Test
 	public void serviceSupprimeUneVelosDeLaBaseDeDonneeEnConnaissanSonIdLaValeurRetourniEt1() throws Exception {
-		when(iDaoVelos.deleteVelos(idVelos)).thenReturn(1);
+		when(iDaoVelos.deleteVelos(idVelos)).thenReturn(1,0);
 		assertEquals(1, iServiceVelos.deleteVelos(idVelos));
 		verify(iDaoVelos, times(1)).deleteVelos(idVelos);
 	}

@@ -19,6 +19,10 @@ public class DaoVelos implements IDaoVelos {
 	private String findVelosById = "select * from velos where idVelos = ?";
 	private String findAllVelos = "select * from velos";
 	
+	/**
+	 * construction initialise
+	 * @param conn
+	 */
 	public DaoVelos(Connection conn) {
 		this.conn = conn;
 	}
