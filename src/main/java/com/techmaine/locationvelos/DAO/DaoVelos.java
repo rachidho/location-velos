@@ -37,6 +37,7 @@ public class DaoVelos implements IDaoVelos {
 		pstmt.setInt(3, newVelos.getNbrRout());
 		pstmt.setLong(4, newVelos.getIdClient());
 		int intReturnByPstmt = pstmt.executeUpdate();
+		pstmt.close();
 		return intReturnByPstmt;
 	}
 
@@ -49,6 +50,7 @@ public class DaoVelos implements IDaoVelos {
 		pstmt.setInt(2, oldVelos.getNbrRout());
 		pstmt.setLong(3, oldVelos.getIdVelos());
 		int intReturnByPstmt = pstmt.executeUpdate();
+		pstmt.close();
 		return intReturnByPstmt;
 	}
 
@@ -59,6 +61,7 @@ public class DaoVelos implements IDaoVelos {
 		PreparedStatement pstmt = conn.prepareStatement(deleteVelos);
 		pstmt.setLong(1, idDeleteVelos);
 		int intReturnByPstmt = pstmt.executeUpdate();
+		pstmt.close();
 		return intReturnByPstmt;
 	}
 
@@ -76,6 +79,7 @@ public class DaoVelos implements IDaoVelos {
 			velos.setNbrRout(rs.getInt(1));
 			velos.setIdClient(rs.getLong(1));
 		}
+		pstmt.close();
 		return velos;
 	}
 
@@ -94,6 +98,7 @@ public class DaoVelos implements IDaoVelos {
 			velos.setIdClient(rs.getLong(1));
 			velosList.add(velos);
 		}
+		pstmt.close();
 		return velosList;
 	}
 

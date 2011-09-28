@@ -12,7 +12,7 @@ import com.techmaine.locationvelos.entity.Client;
 
 public class DaoClient implements IDaoClient {
 
-	Connection conn = null;
+	private Connection conn = null;
 	private String createClient = "insert into client (idClient, nomClient, preClient) values (? ,? ,?)";
 	private String updateClient = "update client set nomClient = ?, preClient = ? where idClient = ?";
 	private String deleteClient = "delete from client where idClient = ?";
@@ -31,37 +31,40 @@ public class DaoClient implements IDaoClient {
 	 * methode qui enregistre les client
 	 */
 	public int ajoutClient(Client newClient) throws SQLException {
+		int intAjoutClient;
 		PreparedStatement pstmt = conn.prepareStatement(createClient);
 		pstmt.setLong(1, newClient.getIdClient());
 		pstmt.setString(2, newClient.getNomClient());
 		pstmt.setString(3, newClient.getPreClient());
-		int i = pstmt.executeUpdate();
+		intAjoutClient = pstmt.executeUpdate();
 		pstmt.close();
-		return i;
+		return intAjoutClient;
 	}
 
 	/**
 	 * methode qui modifier les client
 	 */
 	public int updateClient(Client oldClient) throws SQLException {
+		int intUpdateClient;
 		PreparedStatement pstmt = conn.prepareStatement(updateClient);
 		pstmt.setString(1, oldClient.getNomClient());
 		pstmt.setString(2, oldClient.getPreClient());
 		pstmt.setLong(3, oldClient.getIdClient());
-		int i = pstmt.executeUpdate();
+		intUpdateClient = pstmt.executeUpdate();
 		pstmt.close();
-		return i;
+		return intUpdateClient;
 	}
 
 	/**
 	 * methode qui supprime les clients
 	 */
 	public int deleteClient(Long idDeleteClient) throws SQLException {
+		int intDeleteClient;
 		PreparedStatement pstmt = conn.prepareStatement(deleteClient);
 		pstmt.setLong(1, idDeleteClient);
-		int i = pstmt.executeUpdate();
+		intDeleteClient = pstmt.executeUpdate();
 		pstmt.close();
-		return i;
+		return intDeleteClient;
 	}
 
 	/**
