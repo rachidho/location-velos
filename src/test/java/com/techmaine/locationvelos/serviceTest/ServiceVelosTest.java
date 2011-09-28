@@ -2,10 +2,13 @@ package com.techmaine.locationvelos.serviceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,7 +49,13 @@ public class ServiceVelosTest {
 	@Test
 	public void serviceAjouterVelosDansLaBaseDeDonneeApartirDeServiceLaValeurRetourniEt1() throws Exception {
 		when(iDaoVelos.ajoutVelos(velos)).thenReturn(1);
-		assertEquals(1, iServiceVelos.ajoutVelos(velos));
+		doThrow(new SQLException()).when(iDaoVelos).ajoutVelos(velos);
+		try{
+			assertEquals(1, iServiceVelos.ajoutVelos(velos));
+			fail();
+		}catch(SQLException e){
+			assertTrue(" leve exception ", true);
+		}
 		verify(iDaoVelos, times(1)).ajoutVelos(velos);
 	}
 	
