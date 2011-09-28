@@ -21,6 +21,7 @@ public class ServiceClientTest {
 	
 	private IServiceClient iServiceClient;
 	private Long idClient;
+	private Client client;
 	
 	//@Mock
 	private IDaoClient iDaoClient;
@@ -29,6 +30,7 @@ public class ServiceClientTest {
 	public void setUp() throws SQLException {
 		iDaoClient = mock(DaoClient.class);
 		iServiceClient = new ServiceClient(iDaoClient);
+		client = new Client();
 	}
 	
 	/**
@@ -39,8 +41,8 @@ public class ServiceClientTest {
 	 */
 	@Test
 	public void serviceAjouteUnClientDansLaBaseDDRetournLaValeur1() throws SQLException{
-		when(iDaoClient.ajoutClient(null)).thenReturn(1);
-		assertEquals(" egal ", 1, iServiceClient.ajouteClient(null));
+		when(iDaoClient.ajoutClient(client)).thenReturn(1);
+		assertEquals(" egal ", 1, iServiceClient.ajouteClient(client));
 	}
 	
 	/**
@@ -51,8 +53,8 @@ public class ServiceClientTest {
 	 */
 	@Test
 	public void serviceUpdateUnClientDansLaBaseDeDonneeConnaissanSonIdLaValeurRetourniEt1() throws SQLException{
-		when(iDaoClient.updateClient(null)).thenReturn(1);
-		assertEquals(" egal ", 1, iServiceClient.updateClient(null));
+		when(iDaoClient.updateClient(client)).thenReturn(1);
+		assertEquals(" egal ", 1, iServiceClient.updateClient(client));
 	}
 	
 	/**

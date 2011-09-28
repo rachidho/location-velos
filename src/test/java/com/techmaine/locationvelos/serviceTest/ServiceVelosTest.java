@@ -1,8 +1,15 @@
 package com.techmaine.locationvelos.serviceTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +35,7 @@ public class ServiceVelosTest {
 	public void setUP(){
 		iDaoVelos = mock(DaoVelos.class);
 		iServiceVelos = new ServiceVelos(iDaoVelos);
+		velos = new Velos();
 	}
 	
 	/**
@@ -39,6 +47,7 @@ public class ServiceVelosTest {
 	public void serviceAjouterVelosDansLaBaseDeDonneeApartirDeServiceLaValeurRetourniEt1() throws Exception {
 		when(iDaoVelos.ajoutVelos(velos)).thenReturn(1);
 		assertEquals(1, iServiceVelos.ajoutVelos(velos));
+		verify(iDaoVelos, times(1)).ajoutVelos(velos);
 	}
 	
 	/**
@@ -50,6 +59,7 @@ public class ServiceVelosTest {
 	public void serviceModifierVelosDansLaBaseDeDonneeApartirDeSonIdLaValeurRetourniEt1() throws Exception {
 		when(iDaoVelos.updateVelos(velos)).thenReturn(1);
 		assertEquals(1, iServiceVelos.updateVelos(velos));
+		verify(iDaoVelos, times(1)).updateVelos(velos);
 	}
 	
 	/**
@@ -61,5 +71,46 @@ public class ServiceVelosTest {
 	public void serviceSupprimeUneVelosDeLaBaseDeDonneeEnConnaissanSonIdLaValeurRetourniEt1() throws Exception {
 		when(iDaoVelos.deleteVelos(idVelos)).thenReturn(1);
 		assertEquals(1, iServiceVelos.deleteVelos(idVelos));
+		verify(iDaoVelos, times(1)).deleteVelos(idVelos);
+	}
+	
+	/**
+	 * - etant donne un objet DaoVelos Mocki
+	 * - quand je veux cherche une velos dans la bese de donnee en connaissan son id
+	 * - alors le resulta et un objet Velos
+	 * @throws SQLException 
+	 */
+	@Test
+	public void serviceChercheUneVelosDansLaBaseDeDonneeConnaissanSonIdLaValeurRetourniEt1() throws SQLException{
+		Velos velos1 = new Velos();
+		velos1.setIdVelos((long) 1);
+		velos1.setNom("nom");
+		velos1.setNbrRout(2);
+		velos1.setIdClient((long) 1);
+		
+		when(iDaoVelos.findVelosById(idVelos)).thenReturn(velos1);
+		assertNotNull(iServiceVelos.findVelosById(idVelos));
+		assertEquals(velos1, iServiceVelos.findVelosById(idVelos));
+		verify(iDaoVelos, times(2)).findVelosById(idVelos);
+	}
+	
+	/**
+	 * - etant donnee un objet DaoVelos Mocki
+	 * - quand je veux recupere une liste de tous les Velos enregistre dans la base de donnee
+	 * - alors le resulte et un List des velos List<Velos> 
+	 * @throws SQLException 
+	 */
+	@Test
+	public void serviceRecupereLaListTousLesVelosEnregistreDansLaBaseDeDonneeLeResultaEtUneListDeVelos() throws SQLException{
+		List<Velos> listVelos = new ArrayList<Velos>();
+		Velos velos1 = new Velos();
+		velos1.setIdVelos((long) 1);
+		velos1.setNom("nom");
+		velos1.setNbrRout(2);
+		listVelos.add(velos1);
+		
+		when(iDaoVelos.findAllVelos()).thenReturn(listVelos);
+		assertNotNull(iServiceVelos.findAllVelos());
+		verify(iDaoVelos, times(1)).findAllVelos();
 	}
 }

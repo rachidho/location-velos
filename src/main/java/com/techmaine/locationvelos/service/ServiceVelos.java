@@ -1,6 +1,7 @@
 package com.techmaine.locationvelos.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.techmaine.locationvelos.DAO.interfaceDao.IDaoVelos;
 import com.techmaine.locationvelos.entity.Velos;
@@ -37,6 +38,14 @@ public class ServiceVelos implements IServiceVelos {
 	 */
 	public int deleteVelos(Long idVelos) throws SQLException {
 		return iDaoVelos.deleteVelos(idVelos);
+	}
+
+	public Velos findVelosById(Long idVelos) throws SQLException {
+		return iDaoVelos.findVelosById(idVelos);
+	}
+
+	public List<Velos> findAllVelos() throws SQLException {
+		return iDaoVelos.findAllVelos();
 	}
 
 }
